@@ -13,6 +13,7 @@
 [Oo]utput*/
 [Bb]uild*/
 [Ss]creenshot*/
+[Uu]serSettings/*
 
 # Visual Studio 2015 cache directory
 .vs/
