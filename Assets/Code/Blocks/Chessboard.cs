@@ -82,10 +82,14 @@ namespace UnityIntro {
 					//6  0 1 2 3 4 5 6 7
 					//7  0 1 2 3 4 5 6 7
 
+					//method 1
 					bool yEven = y % 2 == 0;
 					bool xOdd = x % 2 == 1;
 					_board[x, y] = yEven ^ xOdd;
+
+					//method 2
 					_board[x, y] = (x + y) % 2 == 0;
+
 					GameObject block = Instantiate(_blockPrefab, new Vector3(x, y), Quaternion.identity);
 					block.GetComponent<Renderer>().material.color = _board[x, y] ? Color.white : Color.black;
 				}
