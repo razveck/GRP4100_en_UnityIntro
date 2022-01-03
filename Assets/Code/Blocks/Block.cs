@@ -12,7 +12,7 @@ namespace UnityIntro.Blocks {
 		//3. put it on top of the block
 
 		public void OnPointerClick(PointerEventData eventData) {
-			
+			Instantiate(gameObject);
 		}
 
 		// Use this for initialization
