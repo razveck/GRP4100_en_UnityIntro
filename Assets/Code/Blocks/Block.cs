@@ -10,14 +10,12 @@ namespace UnityIntro.Blocks {
 		//1. detect a click (when was this object clicked)
 		//2. instantiate another block (a copy of this)
 		//3. put it on top of the block
+		//4. always instantiate a block at the top of the pile
+
+		//extra: LIFO, FIFO?
 
 		public void OnPointerClick(PointerEventData eventData) {
-			Instantiate(gameObject);
-		}
-
-		// Use this for initialization
-		void Start() {
-
+			Instantiate(gameObject, transform.position + Vector3.back, Quaternion.identity);
 		}
 
 		// Update is called once per frame
