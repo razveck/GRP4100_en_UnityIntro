@@ -20,7 +20,11 @@ namespace UnityIntro.Blocks {
 			//1. detect a left click
 			if (eventData.button == PointerEventData.InputButton.Left)
 			{
+				Transform lastChild = FindLastChild(transform);
 
+				Block newBlock = Instantiate(lastChild.gameObject, lastChild.position + Vector3.back, Quaternion.identity).GetComponent<Block>();
+
+				newBlock.transform.SetParent(lastChild);
 			}
 			else if (eventData.button == PointerEventData.InputButton.Right)
 			{ 
@@ -30,6 +34,16 @@ namespace UnityIntro.Blocks {
 				//3. add that new block to the stack
 
 			//if I right click, remove a block
+		}
+		private Transform FindLastChild(Transform current)
+		{
+			if (current.childCount == 0)
+			{
+				return current;
+			}
+
+			Transform child = current.GetChild(0);
+			return FindLastChild(child);
 		}
 	}
 }
