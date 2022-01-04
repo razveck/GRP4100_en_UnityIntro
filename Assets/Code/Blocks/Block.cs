@@ -5,9 +5,6 @@ using System.Collections;
 namespace UnityIntro.Blocks {
 	public class Block : MonoBehaviour, IPointerClickHandler {
 
-		public Block LastBlock;
-		public Block Root;
-
 		//when I click the block (this GameObject), I want to add a block on top of it
 		//1. detect a click (when was this object clicked)
 		//2. instantiate another block (a copy of this)
@@ -17,23 +14,28 @@ namespace UnityIntro.Blocks {
 		//extra: LIFO, FIFO?
 
 		public void OnPointerClick(PointerEventData eventData) {
-			Block newBlock = Instantiate(gameObject, Root.LastBlock.transform.position + Vector3.back, Quaternion.identity).GetComponent<Block>();
-			newBlock.Root = Root;
-			Root.LastBlock = newBlock;
+			//transform.root
+			//transform.childCount
+			//transform.GetChild
+			//transform.parent
+
+			Transform lastChild = FindLastChild(transform);
+
+			Block newBlock = Instantiate(lastChild.gameObject, lastChild.position + Vector3.back, Quaternion.identity).GetComponent<Block>();
+
+			newBlock.transform.SetParent(lastChild);
 		}
 
-		// Update is called once per frame
-		void Update() {
-			//Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-			//Physics.Raycast(ray);
+		//recursive function
+		//recursion
+		private Transform FindLastChild(Transform current){
+			if(current.childCount == 0){
+				return current;
+			}
+
+			Transform child = current.GetChild(0);
+			return FindLastChild(child);
 		}
 
-		//private void OnMouseDown() {
-		//	//don't use this
-		//}
-	}
-
-	public class Pile{
-		public Block LastBlock;
 	}
 }

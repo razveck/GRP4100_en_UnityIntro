@@ -94,8 +94,6 @@ namespace UnityIntro {
 					Block block = Instantiate(_blockPrefab, new Vector3(x, y), Quaternion.identity).GetComponent<Block>();
 					block.GetComponent<Renderer>().material.color = _board[x, y] ? Color.white : Color.black;
 
-					block.Root = block;
-					block.LastBlock = block;
 				}
 			}
 		}
