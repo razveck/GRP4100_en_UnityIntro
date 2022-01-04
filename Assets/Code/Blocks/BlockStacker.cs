@@ -17,7 +17,15 @@ namespace UnityIntro.Blocks {
 			//Peek to read without removing
 
 			//if I left click, add a block
-				//1. detect a left click
+			//1. detect a left click
+			if (eventData.button == PointerEventData.InputButton.Left)
+			{
+
+			}
+			else if (eventData.button == PointerEventData.InputButton.Right)
+			{ 
+			
+			}
 				//2. instantiate a block (ideally place it on top of the previous, or in a different place)
 				//3. add that new block to the stack
 
