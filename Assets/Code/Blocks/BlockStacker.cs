@@ -4,7 +4,7 @@ using UnityEngine.EventSystems;
 using System.Collections.Generic;
 
 namespace UnityIntro.Blocks {
-	public class BlockStacker : MonoBehaviour, IPointerClickHandler, IPointerDownHandler {
+	public class BlockStacker : MonoBehaviour, IPointerClickHandler {
 
 		private Stack<GameObject> _stack = new Stack<GameObject>();
 
@@ -13,6 +13,16 @@ namespace UnityIntro.Blocks {
 
 		public void OnPointerClick(PointerEventData eventData) {
 
+			if (Input.GetMouseButtonUp(0))
+			{
+
+				Block newBlock = Instantiate(_blockPrefab, transform.position + Vector3.back, Quaternion.identity).GetComponent<Block>();
+
+				_stack.Push(_blockPrefab);
+
+				
+				
+			}
 
 			//Push to add
 			//Pop to remove
@@ -26,27 +36,8 @@ namespace UnityIntro.Blocks {
 			//if I right click, remove a block
 		}
 
-        public void OnPointerDown(PointerEventData eventData)
-        {
-			if (Input.GetMouseButtonDown(0))
-			{
-				Transform lastChild = FindLastChild(transform);
+      
 
-				Block newBlock = Instantiate(lastChild.gameObject, lastChild.position + Vector3.back, Quaternion.identity).GetComponent<Block>();
-
-				newBlock.transform.SetParent(lastChild);
-			}
-		}
-
-        private Transform FindLastChild(Transform current)
-			{
-				if (current.childCount == 0)
-				{
-					return current;
-				}
-
-				Transform child = current.GetChild(0);
-				return FindLastChild(child);
-			}
+        
 	}
 }
