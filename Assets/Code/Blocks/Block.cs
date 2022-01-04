@@ -39,6 +39,5 @@ namespace UnityIntro.Blocks {
 			Transform child = current.GetChild(0);
 			return FindLastChild(child);
 		}
-
 	}
 }
