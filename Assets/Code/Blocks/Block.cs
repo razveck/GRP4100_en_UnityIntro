@@ -12,6 +12,9 @@ namespace UnityIntro.Blocks {
 		//4. always instantiate a block at the top of the pile
 
 		//extra: LIFO, FIFO?
+		//LIFO: last in, first out
+		//FIFO: first in, first out
+		//they are not data structures themselves, they are ways of accessing data in a data structure
 
 		public void OnPointerClick(PointerEventData eventData) {
 			//transform.root
