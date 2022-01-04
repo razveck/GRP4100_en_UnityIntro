@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityIntro.Blocks;
 
 namespace UnityIntro {
 	public class Chessboard : MonoBehaviour {
@@ -90,8 +91,11 @@ namespace UnityIntro {
 					//method 2
 					_board[x, y] = (x + y) % 2 == 0;
 
-					GameObject block = Instantiate(_blockPrefab, new Vector3(x, y), Quaternion.identity);
+					Block block = Instantiate(_blockPrefab, new Vector3(x, y), Quaternion.identity).GetComponent<Block>();
 					block.GetComponent<Renderer>().material.color = _board[x, y] ? Color.white : Color.black;
+
+					block.Root = block;
+					block.LastBlock = block;
 				}
 			}
 		}

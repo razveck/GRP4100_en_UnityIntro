@@ -4,7 +4,9 @@ using System.Collections;
 
 namespace UnityIntro.Blocks {
 	public class Block : MonoBehaviour, IPointerClickHandler {
-		
+
+		public Block LastBlock;
+		public Block Root;
 
 		//when I click the block (this GameObject), I want to add a block on top of it
 		//1. detect a click (when was this object clicked)
@@ -15,7 +17,9 @@ namespace UnityIntro.Blocks {
 		//extra: LIFO, FIFO?
 
 		public void OnPointerClick(PointerEventData eventData) {
-			Instantiate(gameObject, transform.position + Vector3.back, Quaternion.identity);
+			Block newBlock = Instantiate(gameObject, Root.LastBlock.transform.position + Vector3.back, Quaternion.identity).GetComponent<Block>();
+			newBlock.Root = Root;
+			Root.LastBlock = newBlock;
 		}
 
 		// Update is called once per frame
@@ -27,5 +31,9 @@ namespace UnityIntro.Blocks {
 		//private void OnMouseDown() {
 		//	//don't use this
 		//}
+	}
+
+	public class Pile{
+		public Block LastBlock;
 	}
 }
