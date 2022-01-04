@@ -20,15 +20,16 @@ namespace UnityIntro.Blocks {
 			//1. detect a left click
 			if (eventData.button == PointerEventData.InputButton.Left)
 			{
-				Transform lastChild = FindLastChild(transform);
+				GameObject stackBlock = Instantiate(_blockPrefab, new Vector3(0, 0, -_stack.Count), Quaternion.identity);
+				//Transform lastChild = FindLastChild(transform);
+				_stack.Push(stackBlock);
+				//Block newBlock = Instantiate(lastChild.gameObject, lastChild.position + Vector3.back, Quaternion.identity).GetComponent<Block>();
 
-				Block newBlock = Instantiate(lastChild.gameObject, lastChild.position + Vector3.back, Quaternion.identity).GetComponent<Block>();
-
-				newBlock.transform.SetParent(lastChild);
+				//newBlock.transform.SetParent(lastChild);
 			}
 			else if (eventData.button == PointerEventData.InputButton.Right)
-			{ 
-			
+			{
+				return;
 			}
 				//2. instantiate a block (ideally place it on top of the previous, or in a different place)
 				//3. add that new block to the stack
